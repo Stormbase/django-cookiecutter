@@ -1,0 +1,53 @@
+{
+  "name": "{{cookiecutter.project_slug}}",
+  "description": "{{cookiecutter.project_description}}",
+  "version": "{{cookiecutter.project_version}}",
+  "author": "{{cookiecutter.author}} <{{cookiecutter.author_email}}>",
+  "contributors": [],
+  "license": "{{cookiecutter.license}}",
+  "private": true,
+  "scripts": {
+    "start": "webpack --config='config/webpack.devel.js' --watch",
+    "dev": "yarn run start",
+    "watch": "yarn run start",
+    "build": "webpack --config='config/webpack.production.js'",
+    "lint:scss": "stylelint \"frontend/**/*.scss\" --color --cache",
+    "format:scss": "stylelint \"frontend/**/*.scss\" --color --cache --fix",
+    "lint:js": "eslint \"frontend/**/*.js\"",
+    "format:js": "eslint \"frontend/**/*.js\" --fix"
+  },
+  "dependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "autoprefixer": "^9.7.3",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.0",
+    "file-loader": "^5.0.2",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.13.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "sass-loader": "^8.0.0",
+    "terser-webpack-plugin": "^2.3.1",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2"
+  },
+  "devDependencies": {
+    "stylelint": "^12.0.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.19.1"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "Firefox ESR",
+    "not dead"
+  ],
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  }
+}

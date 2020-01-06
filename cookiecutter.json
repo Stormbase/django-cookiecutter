@@ -1,0 +1,9 @@
+{
+    "project_title": "My Project",
+    "project_slug": "my_project",
+    "project_version": "0.1.0",
+    "project_description": "my awesome project description",
+    "author": "Storm Heg",
+    "author_email": "storm@stormbase.co",
+    "license": "MIT"
+}

@@ -1,0 +1,31 @@
+# IDEs
+.vscode/
+
+# Secrets
+.env
+
+# Python stuff
+*.pyc
+*.egg-info/
+__pycache__/
+.egg-info/
+dist/
+
+# Virtualenv stuff
+venv/
+
+# Mac
+.DS_Store
+
+# Node
+node_modules/
+yarn-error.log
+
+# Generated stuff
+.coverage*
+.stylelintcache
+.cache
+.temp
+htmlcov/
+{{cookiecutter.project_slug}}/public/
+{{cookiecutter.project_slug}}/static/dist

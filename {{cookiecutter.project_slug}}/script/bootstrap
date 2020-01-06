@@ -1,0 +1,39 @@
+#! /bin/sh
+
+# script/bootstrap: Resolve all dependencies that the application requires to
+#                   run.
+
+set -e
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+WHITE='\033[1;37m'
+
+
+if [ -f "package.json" ]; then
+  echo -e "${BLUE}==> Installing package.json dependencies…${NC}\n"
+  yarn install
+fi
+
+if [ -f "pyproject.toml" ]; then
+  echo -e "\n${BLUE}==> Installing pyproject.toml dependencies…${NC}\n"
+  poetry install
+fi
+
+if [ -f ".env.example" ] && [ ! -f ".env" ]; then
+  echo -e "\n${BLUE}==> Setting up .env file…${NC}"
+  cp .env.example .env
+  echo -e "${WHITE}==! Please configure your database url in your .env file !==${NC}\n"
+else
+  echo -e "\n${NC}=== No need to setup a .env file. It already exists. ===${NC}"
+fi
+
+if [[ "$VIRTUAL_ENV" == "" ]]; then
+  echo -e "\n${YELLOW}==! Please run 'poetry shell' to activate your virtual environment! !==${NC}"
+fi
+
+
+echo -e "\n${GREEN}=== Bootstrap has finished ===${NC}\n"

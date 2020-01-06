@@ -1,0 +1,19 @@
+#! /bin/sh
+
+# script/clean: Clean temporary files that may cause issues.
+
+set -e
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+WHITE='\033[1;37m'
+
+echo -e "\n${BLUE}==> Cleaning cached python files…${NC}"
+find . -name '*.pyc' -exec rm -rf {} +
+find . -name '__pycache__' -exec rm -rf {} +
+find . -name '*.egg-info' -exec rm -rf {} +
+
+echo -e "${GREEN}=== Clean has finished ===${NC}\n"

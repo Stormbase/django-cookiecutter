@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# script/update: Update application to run for its current checkout.
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+script/bootstrap
+
+set -e
+
+DATABASE_NAME={{cookiecutter.project_slug}}
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+WHITE='\033[1;37m'
+
+if [ -f "manage.py" ]; then
+  echo -e "\n${BLUE}==> Migrating the database…${NC}"
+  $(poetry env info -p)/bin/python manage.py migrate
+fi
+
+if [[ "$VIRTUAL_ENV" == "" ]]; then
+  echo -e "\n${YELLOW}==! Please run 'poetry shell' to activate your virtual environment! !==${NC}"
+fi
+
+echo -e "\n${GREEN}=== Update has finished ===${NC}\n"

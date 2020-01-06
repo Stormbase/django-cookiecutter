@@ -1,0 +1,35 @@
+#! /bin/sh
+
+# script/lint: Checks the application source code for code style problems
+#
+
+set -e
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+WHITE='\033[1;37m'
+
+
+if [ -f "package.json" ]; then
+  echo -e "${BLUE}==> Linting SASS files…${NC}\n"
+  yarn run lint:scss
+  echo -e "\n${BLUE}==> Linting JS files…${NC}\n"
+  yarn run lint:js
+fi
+
+
+if [ -f "pyproject.toml" ]; then
+  echo -e "\n${BLUE}==> Linting Python files…${NC}\n"
+  $(poetry env info -p)/bin/black --check --diff {{cookiecutter.project_slug}} tests
+  $(poetry env info -p)/bin/isort --recursive --check-only --diff {{cookiecutter.project_slug}} tests
+fi
+
+if [[ "$VIRTUAL_ENV" == "" ]]; then
+  echo -e "\n${YELLOW}==! Please run 'poetry shell' to activate your virtual environment! !==${NC}"
+fi
+
+
+echo -e "\n${GREEN}=== Lint has finished ===${NC}\n"

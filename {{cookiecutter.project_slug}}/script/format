@@ -1,0 +1,35 @@
+#! /bin/sh
+
+# script/format: Checks the application source code for code style problems and
+#                Attempts to fix them automatically
+
+set -e
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+WHITE='\033[1;37m'
+
+
+if [ -f "package.json" ]; then
+  echo -e "${BLUE}==> Formatting SASS files…${NC}\n"
+  yarn run format:scss
+  echo -e "\n${BLUE}==> Formatting JS files…${NC}\n"
+  yarn run format:js
+fi
+
+
+if [ -f "pyproject.toml" ]; then
+  echo -e "\n${BLUE}==> Formatting Python files…${NC}\n"
+  $(poetry env info -p)/bin/black {{cookiecutter.project_slug}} tests
+  $(poetry env info -p)/bin/isort --recursive {{cookiecutter.project_slug}} tests
+fi
+
+if [[ "$VIRTUAL_ENV" == "" ]]; then
+  echo -e "\n${YELLOW}==! Please run 'poetry shell' to activate your virtual environment! !==${NC}"
+fi
+
+
+echo -e "\n${GREEN}=== Format has finished ===${NC}\n"

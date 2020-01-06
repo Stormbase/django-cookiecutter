@@ -1,0 +1,24 @@
+# Ignore everything
+**
+
+# Allowed files
+!poetry.lock
+!pyproject.toml
+!package.json
+!yarn.lock
+!postcss.config.js
+!manage.py
+!LICENSE
+!README.md
+!{{cookiecutter.project_slug}}/**
+!frontend/**
+!config/**
+
+# But always keep ignoring these files
+*.pyc
+*.egg-info/
+__pycache__/
+.egg-info/
+.DS_Store
+{{cookiecutter.project_slug}}/public/
+{{cookiecutter.project_slug}}/static/dist

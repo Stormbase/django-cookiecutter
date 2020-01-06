@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "{{cookiecutter.project_slug}}"
+version = "{{cookiecutter.project_version}}"
+description = "{{cookiecutter.project_description}}"
+authors = ["{{cookiecutter.author}} <{{cookiecutter.author_email}}>"]
+license = "{{cookiecutter.license}}"
+readme = "README.md"
+include = ["manage.py"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+django = "^3.0"
+django-environ = "^0.4.5"
+whitenoise = {extras = ["brotli"], version = "^5.0.1"}
+psycopg2 = "^2.8.4"
+uwsgi = "^2.0.18"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+black = "^19.10b0"
+isort = "^4.3.21"
+ipython = "^7.10.2"
+ipdb = "^0.12.3"
+pytest-cov = "^2.8.1"
+pytest-django = "^3.7.0"
+pytest-xdist = "^1.31.0"
+
+[tool.isort]
+force_grid_wrap=0
+include_trailing_comma=true
+line_length=79
+multi_line_output=3
+use_parentheses=true
+
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"

@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# script/test: Run the application test suite. Optionally pass in a path to an
+#              individual test file or directory to run a single test.
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+WHITE='\033[1;37m'
+
+[ -z "$DEBUG" ] || set -x
+
+if [ -f "pytest.ini" ]; then
+  echo -e "\n${BLUE}==> Running tests…${NC}\n"
+
+  if [ -n "$1" ]; then
+    # pass arguments to test call. This is useful for calling a single test.
+    echo -e "${BLUE}==> Running tests: $1 ${NC}…\n"
+    $(poetry env info -p)/bin/pytest --reuse-db "$1"
+  else
+    echo -e "${BLUE}==> Running full test suite…${NC}\n"
+    $(poetry env info -p)/bin/pytest -n auto --reuse-db --cov={{cookiecutter.project_slug}} tests
+  fi
+fi
+
+
+echo -e "\n${GREEN}=== Test has finished ===${NC}\n"

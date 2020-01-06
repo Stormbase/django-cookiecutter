@@ -1,0 +1,45 @@
+#! /bin/sh
+
+# script/setup: Set up application for the first time after cloning, or set it
+#               back to the initial first unused state.
+
+set -e
+
+DATABASE_NAME={{cookiecutter.project_slug}}
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+WHITE='\033[1;37m'
+
+echo -e "${BLUE}==> Dropping database '$DATABASE_NAME' if it exists…${NC}"
+if dropdb --if-exists $DATABASE_NAME; then
+  echo -e "${GREEN}=== Database $DATABASE_NAME dropped! ===${NC}"
+else
+  echo -e "${RED}==! Could not drop database '$DATABASE_NAME'! !==${NC}"
+fi
+
+echo -e "\n${BLUE}==> Creating database '$DATABASE_NAME' using createdb…${NC}"
+if createdb $DATABASE_NAME; then
+  echo -e "${GREEN}=== Database $DATABASE_NAME created succesfully! ===${NC}"
+else
+  echo -e "\n${RED}==! Could not create database automatically! !==${NC}"
+  echo -e "${WHITE}==! Please create a database named '$DATABASE_NAME' manually. !==${NC}"
+fi
+
+if [ -f "manage.py" ]; then
+  echo -e "\n${BLUE}==> Migrating the database…${NC}"
+  $(poetry env info -p)/bin/python manage.py migrate
+
+  echo -e "\n${BLUE}==> Creating the 'admin' superuser…${NC}"
+  echo -e "${WHITE}==! Please enter a new password for the 'admin' superuser !==${NC}\n"
+  $(poetry env info -p)/bin/python manage.py createsuperuser --username admin --email "admin@example.com"
+fi
+
+if [[ "$VIRTUAL_ENV" == "" ]]; then
+  echo -e "\n${YELLOW}==! Please run 'poetry shell' to activate your virtual environment! !==${NC}"
+fi
+
+echo -e "\n${GREEN}=== Setup has finished ===${NC}\n"
