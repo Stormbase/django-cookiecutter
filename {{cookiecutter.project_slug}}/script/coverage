@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# script/coverage: Run the application test suite and generate coverage report in htmlcov/ folder.
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+WHITE='\033[1;37m'
+
+[ -z "$DEBUG" ] || set -x
+
+if [ -f "pytest.ini" ]; then
+  echo -e "\n${BLUE}==> Running tests…${NC}\n"
+
+  echo -e "${BLUE}==> Running full test suite with coverage report…${NC}\n"
+  $(poetry env info -p)/bin/pytest --reuse-db --cov-report=html --cov=infocus tests
+
+  if which xdg-open; then
+    xdg-open file://$(pwd)/htmlcov/index.html
+  fi
+  if which open; then
+    open file://$(pwd)/htmlcov/index.html
+  fi
+fi
+
+
+echo -e "\n${GREEN}=== Coverage has finished ===${NC}\n"
