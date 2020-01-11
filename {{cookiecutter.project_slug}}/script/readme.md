@@ -41,6 +41,16 @@ This means you likely have a fresh installation of Postgres. You will need to cr
 sudo su - postgres -c "createuser <my-user> --superuser"
 ```
 
+Enable passwordless authentication from localhost:
+```sh
+# pg_hba.conf
+
+local   all             all                                     trust
+host    all             all             ::1/128                 trust
+host    all             all             127.0.0.1/32            trust
+
+```
+
 ### <a name="update">Update</a>
 
 [`script/update`](update) is useful to update the project after a fresh pull.
@@ -62,6 +72,26 @@ If any problems are found some problems can be automatically resolved by running
 [`script/test`](test) is used to run the test suite of the application.
 
 You can optionally supply an argument that is a file path. This allows you to run single tests.
+
+### <a name="makemessages">Makemessages</a>
+
+[`script/makemessages`](makemessages) is used to generate .po translation files
+
+Use this to generate translation files from your code. You must translate values in the generated .po files.
+
+
+### <a name="compilemessages">Compilemessages</a>
+
+[`script/compilemessages`](compilemessages) is used to compile .po translation files to binary .mo files
+
+Use this to compile translation files from .po files. This generates binary .mo files. Please commit these files in git and regenerate them on conflicts.
+
+
+### <a name="coverage">Coverage</a>
+
+[`script/coverage`](coverage) is used to generate a code coverage report
+
+This script generates a report in the `htmlcov/` directory in the project root. It will also open this report in your webbrowser.
 
 ### <a name="clean">Clean</a>
 
