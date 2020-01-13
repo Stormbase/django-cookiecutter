@@ -34,7 +34,7 @@ find . -name '*.pyc' -exec rm -rf {} +
 find . -name '__pycache__' -exec rm -rf {} +
 find . -name '*.egg-info' -exec rm -rf {} +
 
-DATABASE_NAME=${DATABASE_NAME}_test
+DATABASE_NAME=test_${DATABASE_NAME}
 if dropdb --if-exists $DATABASE_NAME; then
   echo -e "${GREEN}=== Database $DATABASE_NAME dropped! ===${NC}"
   else
