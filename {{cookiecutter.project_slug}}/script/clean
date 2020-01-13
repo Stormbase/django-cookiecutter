@@ -1,6 +1,8 @@
 #! /bin/sh
 
 # script/clean: Clean temporary files that may cause issues.
+#               Also removes test databases that may cause
+#               your tests to fail
 
 set -e
 
@@ -12,7 +14,45 @@ BLUE='\033[0;34m'
 WHITE='\033[1;37m'
 
 echo -e "\n${BLUE}==> Cleaning cached python files…${NC}"
+find . -name '*.pyc' -exec rm -rf {} +#! /bin/sh
+
+# script/clean: Clean temporary files that may cause issues.
+
+set -e
+
+DATABASE_NAME={{cookiecutter.project_slug}}
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+WHITE='\033[1;37m'
+
+echo -e "\n${BLUE}==> Cleaning cached python files…${NC}"
 find . -name '*.pyc' -exec rm -rf {} +
+find . -name '__pycache__' -exec rm -rf {} +
+find . -name '*.egg-info' -exec rm -rf {} +
+
+DATABASE_NAME=${DATABASE_NAME}_test
+if dropdb --if-exists $DATABASE_NAME; then
+  echo -e "${GREEN}=== Database $DATABASE_NAME dropped! ===${NC}"
+  else
+  echo -e "${RED}==! Could not drop database '$DATABASE_NAME'! !==${NC}"
+  fi
+
+for i in {0..7}
+do
+  DATABASE_NAME=test_{{cookiecutter.project_slug}}_gw${i}
+
+  if dropdb --if-exists $DATABASE_NAME; then
+  echo -e "${GREEN}=== Database $DATABASE_NAME dropped! ===${NC}"
+  else
+  echo -e "${RED}==! Could not drop database '$DATABASE_NAME'! !==${NC}"
+  fi
+done
+
+echo -e "${GREEN}=== Clean has finished ===${NC}\n"
 find . -name '__pycache__' -exec rm -rf {} +
 find . -name '*.egg-info' -exec rm -rf {} +
 
