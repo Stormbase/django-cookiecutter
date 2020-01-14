@@ -19,7 +19,7 @@ if [ -f "pytest.ini" ]; then
   echo -e "\n${BLUE}==> Running tests…${NC}\n"
 
   echo -e "${BLUE}==> Running full test suite with coverage report…${NC}\n"
-  $(poetry env info -p)/bin/pytest --reuse-db --cov-report=html --cov=infocus tests
+  $(poetry env info -p)/bin/pytest --reuse-db --cov-report=html --cov={{cookiecutter.project_slug}} tests
 
   if which xdg-open; then
     xdg-open file://$(pwd)/htmlcov/index.html

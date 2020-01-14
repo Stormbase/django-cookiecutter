@@ -11,4 +11,4 @@ BLUE='\033[0;34m'
 WHITE='\033[1;37m'
 
 echo -e "\n${BLUE}==> Running django-admin compilemessages${NC}"
-cd infocus && django-admin compilemessages
+cd {{cookiecutter.project_slug}} && django-admin compilemessages

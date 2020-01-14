@@ -40,4 +40,4 @@ do
   fi
 done
 
-echo -e "${GREEN}=== Clean has finished ===${NC}\n"
+echo -e "\n${GREEN}=== Clean has finished ===${NC}\n"
