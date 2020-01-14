@@ -31,6 +31,12 @@ include_trailing_comma=true
 line_length=79
 multi_line_output=3
 use_parentheses=true
+default_section = "THIRDPARTY"
+known_first_party = "{{cookiecutter.project_slug}}"
+no_lines_before = "LOCALFOLDER"
+skip = "migrations"
+sections = ["FUTURE","STDLIB","THIRDPARTY","FIRSTPARTY","LOCALFOLDER"]
+
 
 [build-system]
 requires = ["poetry>=1.0"]
