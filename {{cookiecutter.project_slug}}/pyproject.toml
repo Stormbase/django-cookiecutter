@@ -38,6 +38,13 @@ no_lines_before = "LOCALFOLDER"
 skip = "migrations"
 sections = ["FUTURE","STDLIB","THIRDPARTY","FIRSTPARTY","LOCALFOLDER"]
 
+[tool.coverage.run]
+omit = ["*wsgi.py",
+        "*asgi.py",
+        "*testing.py",
+        "*develop.py",
+        "*production.py"
+        ]
 
 [build-system]
 requires = ["poetry>=1.0"]
