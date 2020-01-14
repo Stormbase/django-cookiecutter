@@ -1,0 +1,30 @@
+files: 'tests|{{cookiecutter.project_slug}}'
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.4.0
+    hooks:
+    - id: check-added-large-files
+-   repo: https://github.com/psf/black
+    rev: 19.10b0
+    hooks:
+    - id: black
+      name: Check Python code style
+      args: ["--check", "{{cookiecutter.project_slug}}", "tests"]
+      language_version: python3
+-   repo: https://github.com/timothycrosley/isort
+    rev: 4.3.21-2
+    hooks:
+    - id: isort
+      name: Check if Python imports are sorted
+      args: ["--recursive",  "--check-only", "--diff", "{{cookiecutter.project_slug}}", "tests"]
+      language_version: python3
+      additional_dependencies:
+        - toml
+-   repo: local
+    hooks:
+    - id: migrations-check
+      language: system
+      name: Check for uncreated migrations.
+      entry: bash -c "./manage.py makemigrations --check --dry-run"
+      types: ["python"]
+      pass_filenames: false

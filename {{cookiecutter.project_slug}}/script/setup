@@ -38,6 +38,11 @@ if [ -f "manage.py" ]; then
   $(poetry env info -p)/bin/python manage.py createsuperuser --username admin --email "admin@example.com"
 fi
 
+if [ -f ".pre-commit-config.yaml" ] && [ -d ".git" ]; then
+  echo -e "\n${BLUE}==> Installing pre-commit hooks…${NC}\n"
+  $(poetry env info -p)/bin/pre-commit install
+fi
+
 if [[ "$VIRTUAL_ENV" == "" ]]; then
   echo -e "\n${YELLOW}==! Please run 'poetry shell' to activate your virtual environment! !==${NC}"
 fi
