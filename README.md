@@ -21,7 +21,7 @@ A Django [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/README.htm
 Make sure you have cookiecutter installed [Cookiecutter installation guide](https://cookiecutter.readthedocs.io/en/latest/installation.html)
 
 ```sh
-cookiecutter gl:stormbase/django-cookiecutter
+cookiecutter gh:stormbase/django-cookiecutter
 ```
 
 Follow the prompts and you're all set!
