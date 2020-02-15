@@ -1,5 +1,5 @@
 """
-Url patterns for the example app
+Url patterns for the hello app
 """
 
 from django.urls import path
