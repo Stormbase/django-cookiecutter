@@ -1,7 +1,7 @@
-files: 'tests|{{cookiecutter.project_slug}}'
+files: 'tests|{{cookiecutter.project_slug}}|frontend'
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.4.0
+    rev: v2.5.0
     hooks:
     - id: check-added-large-files
 -   repo: https://github.com/psf/black
@@ -12,7 +12,7 @@ repos:
       args: ["--check", "{{cookiecutter.project_slug}}", "tests"]
       language_version: python3
 -   repo: https://github.com/timothycrosley/isort
-    rev: 4.3.21-2
+    rev: 4.3.21
     hooks:
     - id: isort
       name: Check if Python imports are sorted
@@ -20,6 +20,12 @@ repos:
       language_version: python3
       additional_dependencies:
         - toml
+-   repo: https://github.com/Stormbase/stylelint
+    rev: 13.2.0-pre-commit-hooks
+    hooks:
+    - id: stylelint
+      name: Check styling with Stylelint
+      pass_filenames: true
 -   repo: local
     hooks:
     - id: migrations-check
