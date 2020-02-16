@@ -3,5 +3,5 @@ from django.urls import include, path
 
 urlpatterns = [
     path("", include("{{cookiecutter.project_slug}}.hello.urls")),
-    path("admin/", admin.site.urls)
+    path("admin/", admin.site.urls),
 ]
