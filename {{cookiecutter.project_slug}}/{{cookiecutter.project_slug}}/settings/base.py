@@ -143,6 +143,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, "public/static")
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
+# File storage for user-uploaded files
+# https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-MEDIA_URL
+# https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-MEDIA_ROOT
 MEDIA_URL = env.str("MEDIA_URL", default="/media/")
 MEDIA_ROOT = os.path.join(BASE_DIR, "public/media")
 
