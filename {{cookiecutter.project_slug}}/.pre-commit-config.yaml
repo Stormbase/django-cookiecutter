@@ -26,6 +26,12 @@ repos:
     - id: stylelint
       name: Check styling with Stylelint
       pass_filenames: true
+-   repo: https://github.com/Stormbase/eslint
+    rev: v6.8.0-pre-commit-hooks
+    hooks:
+    - id: eslint
+      name: Check JavaScript code style
+      pass_filenames: true
 -   repo: local
     hooks:
     - id: migrations-check
