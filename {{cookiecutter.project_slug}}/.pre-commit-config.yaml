@@ -9,29 +9,33 @@ repos:
     hooks:
     - id: black
       name: Check Python code style
-      args: ["--check", "{{cookiecutter.project_slug}}", "tests"]
+      args: ["{{cookiecutter.project_slug}}", "tests"]
       language_version: python3
 -   repo: https://github.com/timothycrosley/isort
     rev: 4.3.21
     hooks:
     - id: isort
       name: Check if Python imports are sorted
-      args: ["--recursive",  "--check-only", "--diff", "{{cookiecutter.project_slug}}", "tests"]
+      args: ["--recursive", "{{cookiecutter.project_slug}}", "tests"]
       language_version: python3
       additional_dependencies:
         - toml
--   repo: https://github.com/Stormbase/stylelint
-    rev: 13.2.0-pre-commit-hooks
+-   repo: https://github.com/awebdeveloper/pre-commit-stylelint
+    rev: v0.0.2
     hooks:
     - id: stylelint
       name: Check styling with Stylelint
-      pass_filenames: true
--   repo: https://github.com/Stormbase/eslint
-    rev: v6.8.0-pre-commit-hooks
+      additional_dependencies: ['stylelint@13.2.0']
+-   repo: https://github.com/pre-commit/mirrors-eslint
+    rev: 'v6.8.0'
     hooks:
-    - id: eslint
-      name: Check JavaScript code style
-      pass_filenames: true
+    -   id: eslint
+        name: Check JavaScript code style with eslint
+        additional_dependencies:
+        -   eslint@6.8.0
+        -   eslint-config-airbnb-base@14.0.0
+        -   eslint-plugin-import@2.19.1
+        -   babel-eslint@10.0.3
 -   repo: local
     hooks:
     - id: migrations-check
