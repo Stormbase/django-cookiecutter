@@ -36,13 +36,13 @@ check-stylelint:
 check-black:
   <<: *quality-backend
   before_script:
-    - pip install black
+    - pip install 'black==19.10b0'
   script: black --check --diff {{cookiecutter.project_slug}} tests
 
 check-isort:
   <<: *quality-backend
   before_script:
-    - pip install isort[pyproject]
+    - pip install 'isort[pyproject]==4.3.21'
   script: isort --recursive --check-only --diff {{cookiecutter.project_slug}} tests
 
 # Testing jobs
