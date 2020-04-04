@@ -1,6 +1,7 @@
 stages:
   - quality
   - test
+  - deploy
 
 cache:
   key: "${CI_JOB_NAME}"
@@ -19,6 +20,17 @@ cache:
   stage: quality
   variables:
     PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+.deploy-heroku: &deploy-heroku
+  image: ruby:2.7
+  stage: deploy
+  before_script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+  script:
+    # We use a tool developed by Travis CI called dpl: https://github.com/travis-ci/dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
 
 # Quality jobs
 check-eslint:
@@ -46,13 +58,14 @@ check-isort:
   script: isort --recursive --check-only --diff {{cookiecutter.project_slug}} tests
 
 # Testing jobs
-test:
+test_python:
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+%)/'
   stage: test
   image: python:3.8
   services:
-    - postgres:11-alpine
+    - postgres:12-alpine
   variables:
+    POETRY_VERSION: 1.0.5
     PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
     POSTGRES_DB: test_db
     POSTGRES_USER: test_user
@@ -60,8 +73,32 @@ test:
   script:
     - export DATABASE_URL=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:5432/$POSTGRES_DB
     - apt-get update -qy
-    - pip install -U pip poetry
-    - poetry config virtualenvs.in-project true
+    - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python && source $HOME/.poetry/env
     - poetry --version
-    - poetry install -vv --no-interaction --no-ansi --no-root
+    - poetry config virtualenvs.in-project true
+    - poetry install -vv --no-interaction
+
     - .venv/bin/pytest -n auto --reuse-db --cov={{cookiecutter.project_slug}} tests
+
+# Staging deployment
+staging:
+  <<: *deploy-heroku
+  variables:
+    HEROKU_APP_NAME: {{cookiecutter.heroku_staging_app_name}}
+  environment:
+    name: staging
+    url: https://{{cookiecutter.heroku_staging_app_name}}.herokuapp.com
+  only:
+    - staging
+
+# Production deployment
+production:
+  <<: *deploy-heroku
+  variables:
+    HEROKU_APP_NAME: {{cookiecutter.heroku_production_app_name}}
+  environment:
+    name: production
+    url: https://{{cookiecutter.heroku_production_app_name}}.herokuapp.com
+  when: manual  # Manual action is required to deploy to production
+  only:
+    - production

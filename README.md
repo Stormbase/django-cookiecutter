@@ -16,7 +16,8 @@ A Django [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/README.htm
 - Basic webpack config with autoprefixer and SCSS support
 - Dockerfile included
 - docker-compose file for simulating a production-like environment
-- Heroku.yml — Ready for deployment on Heroku!
+- GitLab CI config file
+- Deploy to Heroku
 - Scripts-to-rule-them-all — A set of scripts to quickly setup the project and to perform certain tasks. Find them in the `script` folder.
 
 ## Using this template
@@ -28,6 +29,12 @@ cookiecutter gh:stormbase/django-cookiecutter
 ```
 
 Follow the prompts and you're all set!
+
+## Gitlab CI configuration
+
+The default CI config triggers a deployment to staging when the `staging` branch is updated.
+
+Pushing to a branch named `production` will trigger a production deployment. Please note that a production deployment requires manual confirmation from the GitLab UI.
 
 ## License
 

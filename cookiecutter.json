@@ -5,5 +5,7 @@
     "project_description": "my awesome project description",
     "author": "You",
     "author_email": "you@yourdomain.com",
-    "license": "MIT"
+    "license": "MIT",
+    "heroku_staging_app_name": "my-project-staging",
+    "heroku_production_app_name": "my-project-production"
 }
