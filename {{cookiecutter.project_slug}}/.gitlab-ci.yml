@@ -78,7 +78,10 @@ test_python:
     - poetry config virtualenvs.in-project true
     - poetry install -vv --no-interaction
 
-    - .venv/bin/pytest -n auto --reuse-db --cov={{cookiecutter.project_slug}} tests
+    - .venv/bin/pytest -n auto --reuse-db --junitxml=report.xml --cov={{cookiecutter.project_slug}} tests
+  artifacts:
+    reports:
+      junit: report.xml
 
 # Staging deployment
 staging:
