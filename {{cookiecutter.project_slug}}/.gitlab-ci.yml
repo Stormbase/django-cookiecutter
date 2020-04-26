@@ -62,6 +62,7 @@ test_python:
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+%)/'
   stage: test
   image: python:3.8
+  needs: []
   services:
     - postgres:12-alpine
   variables:
