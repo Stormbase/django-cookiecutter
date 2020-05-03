@@ -142,7 +142,6 @@ STATIC_URL = env.str("STATIC_URL", default="/static/")
 STATIC_ROOT = os.path.join(BASE_DIR, "public/static")
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-STATICFILES_FINDERS = ("django.contrib.staticfiles.finders.FileSystemFinder",)
 
 # File storage for user-uploaded files
 # https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-MEDIA_URL
