@@ -24,7 +24,7 @@ fi
 if [ -f "pyproject.toml" ]; then
   echo -e "\n${BLUE}==> Linting Python files…${NC}\n"
   $(poetry env info -p)/bin/black --check --diff {{cookiecutter.project_slug}} tests
-  $(poetry env info -p)/bin/isort --recursive --check-only --diff {{cookiecutter.project_slug}} tests
+  $(poetry env info -p)/bin/isort --check-only --diff {{cookiecutter.project_slug}} tests
 fi
 
 if [[ "$VIRTUAL_ENV" == "" ]]; then
