@@ -12,7 +12,7 @@ cache:
 
 # Templates
 .quality-frontend: &quality-frontend
-  image: node:12-slim
+  image: node:14-slim
   stage: quality
 
 .quality-backend-template: &quality-backend

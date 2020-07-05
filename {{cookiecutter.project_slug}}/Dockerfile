@@ -1,4 +1,4 @@
-FROM node:12 as frontend-builder
+FROM node:14 as frontend-builder
 
 RUN apt-get update
 WORKDIR /code
