@@ -21,7 +21,7 @@ repos:
       additional_dependencies:
         - toml
 -   repo: https://github.com/awebdeveloper/pre-commit-stylelint
-    rev: v0.0.2
+    rev: 0.0.2
     hooks:
     - id: stylelint
       name: Check styling with Stylelint
