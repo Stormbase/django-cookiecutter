@@ -22,10 +22,10 @@ if [ -f "pytest.ini" ]; then
   $(poetry env info -p)/bin/pytest --reuse-db --cov-report=html --cov={{cookiecutter.project_slug}} tests
 
   if which xdg-open; then
-    xdg-open file://$(pwd)/htmlcov/index.html
+    xdg-open "file://$(pwd)/htmlcov/index.html"
   fi
   if which open; then
-    open file://$(pwd)/htmlcov/index.html
+    open "file://$(pwd)/htmlcov/index.html"
   fi
 fi
 
