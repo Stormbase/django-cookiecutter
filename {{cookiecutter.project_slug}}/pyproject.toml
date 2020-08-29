@@ -24,7 +24,7 @@ ipdb = "^0.13.3"
 pre-commit = "^2.0.1"
 pytest-cov = "^2.8.1"
 pytest-django = "^3.7.0"
-pytest-xdist = "^1.31.0"
+pytest-xdist = "^2.1.0"
 
 [tool.isort]
 force_grid_wrap=0
