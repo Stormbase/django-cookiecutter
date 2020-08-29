@@ -12,8 +12,25 @@ class UserAdmin(AbstractUserAdmin):
     ordering = ["email"]
     search_fields = ["email"]
     fieldsets = (
-        (None, {"fields": ["username", "password",]}),
-        (_("Personal info"), {"fields": ("first_name", "last_name", "email",)},),
+        (
+            None,
+            {
+                "fields": [
+                    "username",
+                    "password",
+                ]
+            },
+        ),
+        (
+            _("Personal info"),
+            {
+                "fields": (
+                    "first_name",
+                    "last_name",
+                    "email",
+                )
+            },
+        ),
         (
             _("Permissions"),
             {
@@ -29,5 +46,8 @@ class UserAdmin(AbstractUserAdmin):
         (_("Important dates"), {"fields": ["last_login", "date_joined"]}),
     )
     add_fieldsets = (
-        (None, {"classes": ["wide"], "fields": ["email", "password1", "password2"]},),
+        (
+            None,
+            {"classes": ["wide"], "fields": ["email", "password1", "password2"]},
+        ),
     )

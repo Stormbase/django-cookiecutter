@@ -48,7 +48,7 @@ check-stylelint:
 check-black:
   <<: *quality-backend
   before_script:
-    - pip install 'black==19.10b0'
+    - pip install 'black==20.8b1'
   script: black --check --diff {{cookiecutter.project_slug}} tests
 
 check-isort:
