@@ -16,7 +16,7 @@ psycopg2 = "^2.8.4"
 uwsgi = "^2.0.18"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "^6.0"
 black = "20.8b1"
 isort = "^5.0.3"
 ipython = "^7.10.2"
@@ -37,6 +37,11 @@ known_first_party = "{{cookiecutter.project_slug}}"
 no_lines_before = "LOCALFOLDER"
 skip = "migrations"
 sections = ["FUTURE","STDLIB","THIRDPARTY","FIRSTPARTY","LOCALFOLDER"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "{{cookiecutter.project_slug}}.settings.testing"
+testpaths = "tests"
+django_find_project = true
 
 [tool.coverage.run]
 omit = ["*wsgi.py",

@@ -16,7 +16,7 @@ WHITE='\033[1;37m'
 
 [ -z "$DEBUG" ] || set -x
 
-if [ -f "pytest.ini" ]; then
+if [ -f "pyproject.toml" ]; then
   echo -e "\n${BLUE}==> Running tests…${NC}\n"
 
   if [ -n "$1" ]; then
