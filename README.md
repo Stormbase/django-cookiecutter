@@ -8,7 +8,7 @@ A Django [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/README.htm
 ## Features
 
 - Python 3.8
-- Django 3.0
+- Django 3.1
 - Poetry 1.0
 - Pytest
 - Black + isort
