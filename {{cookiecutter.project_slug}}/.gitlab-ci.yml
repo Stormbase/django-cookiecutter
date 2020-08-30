@@ -54,7 +54,7 @@ check-black:
 check-isort:
   <<: *quality-backend
   before_script:
-    - pip install 'isort[pyproject]==5.0.3'
+    - pip install 'isort==5.0.3'
   script: isort --check-only --diff {{cookiecutter.project_slug}} tests
 
 # Testing jobs
