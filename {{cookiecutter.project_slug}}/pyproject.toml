@@ -43,6 +43,10 @@ sections = ["FUTURE","STDLIB","THIRDPARTY","FIRSTPARTY","LOCALFOLDER"]
 DJANGO_SETTINGS_MODULE = "{{cookiecutter.project_slug}}.settings.testing"
 testpaths = "tests"
 django_find_project = true
+filterwarnings = """
+ignore
+default:::{{cookiecutter.project_slug}}.*
+"""
 junit_family="xunit2"
 
 [tool.coverage.run]
