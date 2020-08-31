@@ -7,7 +7,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 ]
 
-if settings.DEBUG:
+# Special url routes for local development. We don't care about coverage here.
+if settings.DEBUG:  # pragma: no cover
     from django.conf.urls.static import static
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 

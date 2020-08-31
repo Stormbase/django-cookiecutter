@@ -19,7 +19,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = env.bool("DEBUG", default=False)
 
 # Read the .env file if it exists and we are in debug mode
-if os.path.exists(os.path.abspath(os.path.join(BASE_DIR, "..", ".env"))):
+if os.path.exists(
+    os.path.abspath(os.path.join(BASE_DIR, "..", ".env"))
+):  # pragma: no cover
     environ.Env.read_env(os.path.abspath(os.path.join(BASE_DIR, "..", ".env")))
 
 # Change this secret in production!
