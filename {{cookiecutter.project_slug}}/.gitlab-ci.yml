@@ -79,6 +79,10 @@ test_python:
     - poetry config virtualenvs.in-project true
     - poetry install -vv --no-interaction
 
+    # Check if migrations have been created
+    - SECRET_KEY=i_am_ci .venv/bin/python manage.py makemigrations --check --dry-run
+
+    # Run tests
     - .venv/bin/pytest -n auto --reuse-db --junitxml=report.xml --cov={{cookiecutter.project_slug}} tests
   artifacts:
     reports:
