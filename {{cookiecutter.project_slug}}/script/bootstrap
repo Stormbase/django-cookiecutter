@@ -32,7 +32,7 @@ else
 fi
 
 if [ -f "{{cookiecutter.project_slug}}/settings/local.py.example" ] && [ ! -f "{{cookiecutter.project_slug}}/settings/local.py" ]; then
-  echo -e "\n${BLUE}==> Setting up .env file…${NC}"
+  echo -e "\n${BLUE}==> Setting up settings/local.py file…${NC}"
   cp {{cookiecutter.project_slug}}/settings/local.py.example {{cookiecutter.project_slug}}/settings/local.py
   echo -e "${WHITE}==! Please configure any machine-specific settings in {{cookiecutter.project_slug}}/settings/local.py !==${NC}\n"
 else
