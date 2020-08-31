@@ -25,7 +25,7 @@ if os.path.exists(os.path.abspath(os.path.join(BASE_DIR, "..", ".env"))):
 # Change this secret in production!
 SECRET_KEY = env.str("SECRET_KEY", default="")
 
-# Setting this environment variable in production is higly recommended
+# Setting this environment variable in production is highly recommended
 # See: https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
 
