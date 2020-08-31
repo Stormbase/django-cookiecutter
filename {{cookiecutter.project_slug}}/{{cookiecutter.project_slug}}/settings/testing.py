@@ -1,5 +1,5 @@
 """
-Common settings for testing the application
+Common settings for testing the application.
 """
 
 from .base import *

@@ -1,5 +1,5 @@
 """
-Settings related to logging. Typically imported from ``base.py``
+Settings related to logging. Typically imported from ``base.py``.
 
 """
 

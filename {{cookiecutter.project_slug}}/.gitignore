@@ -4,6 +4,9 @@
 # Secrets
 .env
 
+# Local settings
+{{cookiecutter.project_slug}}/settings/local.py
+
 # Python stuff
 *.pyc
 *.egg-info/
