@@ -64,7 +64,7 @@ test_python:
   image: python:3.8
   needs: []
   services:
-    - postgres:12-alpine
+    - postgres:13-alpine
   variables:
     POETRY_VERSION: 1.1.4
     PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
