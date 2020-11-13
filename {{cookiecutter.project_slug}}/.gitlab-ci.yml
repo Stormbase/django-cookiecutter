@@ -16,7 +16,7 @@ cache:
   stage: quality
 
 .quality-backend-template: &quality-backend
-  image: python:3.8-slim
+  image: python:3.9-slim
   stage: quality
   variables:
     PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
@@ -61,7 +61,7 @@ check-isort:
 test_python:
   coverage: '/TOTAL\s+\d+\s+\d+\s+(\d+%)/'
   stage: test
-  image: python:3.8
+  image: python:3.9
   needs: []
   services:
     - postgres:13-alpine

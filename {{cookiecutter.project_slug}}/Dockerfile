@@ -8,7 +8,7 @@ COPY . /code
 RUN yarn run build
 
 
-FROM python:3.8
+FROM python:3.9
 
 # This secret key is used during build only
 ARG SECRET_KEY=build_only
