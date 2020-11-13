@@ -28,7 +28,7 @@ RUN useradd --system --user-group app && mkdir -p /public && chown -R app:app /p
 RUN apt-get update && apt-get install -y swig libssl-dev dpkg-dev netcat && rm -rf /var/lib/apt/lists/*
 
 # Install poetry and configure it not to use virtualenvs
-RUN pip install -U pip poetry
+RUN pip install -U pip poetry==1.1.4
 RUN poetry config virtualenvs.create false
 
 # Install dependencies

@@ -58,5 +58,5 @@ omit = ["*wsgi.py",
         ]
 
 [build-system]
-requires = ["poetry>=1.0"]
+requires = ["poetry>=1.1"]
 build-backend = "poetry.masonry.api"
