@@ -3,17 +3,11 @@ root = true
 [*]
 end_of_line = lf
 
-[*.{js,py}]
+[*.{js,scss,html,json,yaml}]
 charset = utf-8
-
-[*.{js,scss}]
 indent_style = space
 indent_size = 2
 
-[*.{html,py}]
+[*.py]
 indent_style = space
 indent_size = 4
-
-[*.{json,yaml}]
-indent_style = space
-indent_size = 2
