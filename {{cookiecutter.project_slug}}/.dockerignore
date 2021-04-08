@@ -13,6 +13,9 @@
 !{{cookiecutter.project_slug}}/**
 !frontend/**
 !config/**
+!Procfile
+!app.json
+
 
 # But always keep ignoring these files
 *.pyc
