@@ -81,6 +81,8 @@ TEMPLATES = [
 
 DATABASES = {"default": env.db_url(default="postgres://localhost/{{cookiecutter.project_slug}}")}
 
+# https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Cache
 # https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-CACHES
