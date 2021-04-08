@@ -23,12 +23,12 @@
                 ]
             }
         ],
-        "declaration-property-value-blacklist": {
+        "declaration-property-value-disallowed-list": {
             "/^border/": [
                 "none"
             ]
         },
-        "at-rule-blacklist": [
+        "at-rule-disallowed-list": [
             "extend"
         ],
         "max-nesting-depth": 3,
