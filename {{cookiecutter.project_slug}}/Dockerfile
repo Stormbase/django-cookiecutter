@@ -1,10 +1,11 @@
 FROM node:14 as frontend-builder
 
-RUN apt-get update
 WORKDIR /code
 COPY package.json yarn.lock /code/
 RUN yarn install
-COPY . /code
+COPY postcss.config.js /code/
+COPY config /code/config/
+COPY frontend /code/frontend/
 RUN yarn run build
 
 
@@ -12,6 +13,7 @@ FROM python:3.9
 
 # This secret key is used during build only
 ARG SECRET_KEY=build_only
+ARG POETRY_VERSION=1.1.4
 
 # Some defaults
 ENV PORT=8080 \
@@ -28,7 +30,7 @@ RUN useradd --system --user-group app && mkdir -p /public && chown -R app:app /p
 RUN apt-get update && apt-get install -y swig libssl-dev dpkg-dev netcat && rm -rf /var/lib/apt/lists/*
 
 # Install poetry and configure it not to use virtualenvs
-RUN pip install -U pip poetry==1.1.4
+RUN pip install -U pip poetry==$POETRY_VERSION uwsgi
 RUN poetry config virtualenvs.create false
 
 # Install dependencies
