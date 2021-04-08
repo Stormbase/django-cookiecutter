@@ -85,8 +85,12 @@ DATABASES = {"default": env.db_url(default="postgres://localhost/{{cookiecutter.
 # Cache
 # https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-CACHES
 
-CACHES = {"default": env.cache(default="dummycache://")}
-
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "database_cache",
+    }
+}
 
 # Email
 # https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-EMAIL_HOST
@@ -127,8 +131,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
-
 LANGUAGES = [("en", _("English"))]
+LOCALE_PATHS = [os.path.join(BASE_DIR, "locales")]
 
 TIME_ZONE = "UTC"
 USE_I18N = True
@@ -144,6 +148,8 @@ STATIC_URL = env.str("STATIC_URL", default="/static/")
 STATIC_ROOT = os.path.join(BASE_DIR, "public/static")
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# Don't use FileSystemFinder as it will find the static directory in the {{cookiecutter.project_slug}} app
+STATICFILES_FINDERS = ("django.contrib.staticfiles.finders.AppDirectoriesFinder",)
 
 # File storage for user-uploaded files
 # https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-MEDIA_URL
@@ -154,3 +160,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "public/media")
 # Web Server Gateway Interface (WSGI). Used for deployment
 # https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
 WSGI_APPLICATION = "{{cookiecutter.project_slug}}.wsgi.application"
+
+# Sentry DSN
+SENTRY_DSN = env.str("SENTRY_DSN", default=None)
