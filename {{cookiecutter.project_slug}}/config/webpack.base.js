@@ -1,39 +1,39 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const webpack = require('webpack');
-
-const pkg = require('../package.json');
-
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: {
-    'app': path.resolve(__dirname, '../frontend/index.js'),
+    site: path.resolve(__dirname, "../frontend/index.js"),
   },
   output: {
-    path: path.resolve(__dirname, '../{{cookiecutter.project_slug}}/static/dist'),
-    filename: '[name].js'
+    path: path.resolve(
+      __dirname,
+      "../{{cookiecutter.project_slug}}/static/dist"
+    ),
+    publicPath: "",
+    filename: "[name].js",
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ["babel-loader"]
+        use: ["babel-loader"],
       },
       {
         test: /\.(s?)css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
         test: /\.(eot|ttf|woff|woff2|svg)$/,
         use: {
           loader: "file-loader",
           options: {
-            name: "assets/[name].[ext]"
-          }
-        }
-      }
-    ]
+            name: "assets/[name].[ext]",
+          },
+        },
+      },
+    ],
   },
   optimization: {
     splitChunks: {
@@ -41,20 +41,14 @@ module.exports = {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: "vendor",
-          chunks: "all"
-        }
-      }
+          chunks: "all",
+        },
+      },
     },
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css'
-    }),
-    new webpack.BannerPlugin({
-      banner: `${pkg.name} ${pkg.version}
-Copyright 2019-${new Date().getFullYear()}
-`
+      filename: "[name].css",
     }),
   ],
-  stats: "errors-only",
-}
+};
