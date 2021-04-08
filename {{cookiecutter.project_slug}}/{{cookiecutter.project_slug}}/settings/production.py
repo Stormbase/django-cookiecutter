@@ -55,7 +55,7 @@ SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", default=True)
 # https://docs.djangoproject.com/en/3.2/ref/settings/#secure-hsts-include-subdomains
 # https://docs.djangoproject.com/en/3.2/ref/settings/#secure-hsts-preload
 # FIXME: [before-launch-checklist] Enable HSTS support
-SECURE_HSTS_SECONDS = 0 # Remove this when going live
+SECURE_HSTS_SECONDS = 0  # Remove this when going live
 # SECURE_HSTS_SECONDS = 63072000  # 2 years
 
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Has no effect when SECURE_HSTS_SECONDS is 0
