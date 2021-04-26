@@ -23,9 +23,11 @@ if [ -f "pyproject.toml" ]; then
 
   if which xdg-open; then
     xdg-open "file://$(pwd)/htmlcov/index.html"
+    exit 0
   fi
   if which open; then
     open "file://$(pwd)/htmlcov/index.html"
+    exit 0
   fi
 fi
 
