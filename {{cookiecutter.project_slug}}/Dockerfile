@@ -13,7 +13,7 @@ FROM python:3.9
 
 # This secret key is used during build only
 ARG SECRET_KEY=build_only
-ARG POETRY_VERSION=1.1.4
+ARG POETRY_VERSION=1.1.6
 
 # Some defaults
 ENV PORT=8080 \
