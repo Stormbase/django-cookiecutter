@@ -4,14 +4,14 @@
 
 These scripts are a set of boilerplate scripts new developers can run to quickly get started with this project. It tries to follow the [Scripts To Rule Them All](https://github.com/github/scripts-to-rule-them-all) pattern.
 
-### I am a new developer. In what order should I run these scripts?
+### I have freshly cloned this project. In what order should I run these scripts?
 
 Welcome aboard! 🎉🎊
 
 The correct order is:
 
-1. `./script/bootstrap`
-2. `./script/setup`
+1. `./script/bootstrap` - Install project dependencies and steps that should only be performed once.
+2. `./script/setup` - Migrates the database and performs other steps that may need to be run from time to time.
 
 You can find more information about these scripts below.
 
@@ -25,7 +25,7 @@ You typically have to run this only once.
 
 [`script/setup`](setup) is used to recreate the database and migrate it for you.
 
-This depends on the `createdb` and `dropdb` exectubles having access to your Postgres installation.
+This depends on the `createdb` and `dropdb` executables having access to your Postgres installation.
 
 #### <a name="setup-troubleshooting">Troubleshooting</a>
 
