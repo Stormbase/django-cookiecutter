@@ -111,3 +111,17 @@ production:
   when: manual  # Manual action is required to deploy to production
   only:
     - production
+
+pages:
+  stage: deploy
+  image:
+    # If you require additional plugins you must replace this image
+    name: squidfunk/mkdocs-material
+    entrypoint: [""]
+  only:
+    - master
+  script:
+    - mkdocs build -d public
+  artifacts:
+    paths:
+      - public
