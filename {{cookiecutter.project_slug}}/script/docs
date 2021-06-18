@@ -1,0 +1,22 @@
+#! /bin/sh
+
+# script/docs: Will build the bundled documentation with live-reload enabled.
+#              on http://localhost:8080
+
+set -e
+
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+WHITE='\033[1;37m'
+
+if [ -f "mkdocs.yml" ]; then
+  echo -e "\n${BLUE}==> Serving docs…${NC}"
+  $(poetry env info -p)/bin/mkdocs serve -a localhost:8080
+fi
+
+
+echo -e "\n${GREEN}=== Docs has finished ===${NC}\n"
