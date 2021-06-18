@@ -51,6 +51,10 @@ host    all             all             127.0.0.1/32            trust
 
 ```
 
+### <a name="docs">Documentation</a>
+
+[`script/docs`](docs) is used to start a webserver so the documentation inside the `docs/` can be previewed.
+
 ### <a name="update">Update</a>
 
 [`script/update`](update) is useful to update the project after a fresh pull.
